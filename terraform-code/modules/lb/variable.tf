@@ -36,5 +36,6 @@ variable "apps" {
     })
     service_name  = string
     replica_count = number
+    domain_path   = string
   }))
 }

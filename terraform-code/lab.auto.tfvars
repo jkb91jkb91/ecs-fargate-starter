@@ -1,33 +1,32 @@
-### EC2 Values
-ami           = "ami-04b4f1a9cf54c11d0"
-instance_type = "t2.micro"
-region        = "us-east-1"
+#####################  SET YOUR OWN VALUES BELOW #####################
+######################################################################
+######################################################################
 
-### Tags
-tags = {
-  Environment = "TST"
-}
+# EXAMPLE region = "us-east-1"
+region = "set-your-preferred-region"
 
-instance_tags = {
-  AWSLZ_Scheduler = "AWS"
+# EXAMPLE certificate_arn = "arn:aws:acm:us-east-1:311141565994:certificate/85a70a..................."
+certificate_arn = "set-arn-of-created-acm-certificate-for-your-domain"
 
-}
+# EXAMPLE hosted_zone_name = "projectdevops.eu"
+hosted_zone_name = "your-domain.com" 
 
-certificate_arn = "arn:aws:acm:us-east-1:311141565994:certificate/85a70a39-cfd3-4e0a-8dba-e43da4114aec"
-hosted_zone_name = "projectdevops.eu"
-####################  MDP NAVIGATOR DEPENDENCIES ######################
-cluster_name           = "ecs-cluster"
-log_group_name         = "ecs-logs"
+############################  ECS CLUSTER  #############################
+# EXAMPLE cluster_name = "ecs-cluster"
+cluster_name           = "set-your-ecs-cluster-name"
+# EXAMPLE log_group_name = "ecs-logs"
+log_group_name         = "set-ecs-logs-name"
+# EXAMPLE logs_retention_in_days = 7
 logs_retention_in_days = 7
-#------------------------APPS LIST SERVICES+TASK-----------------------
+######################  APPS LIST SERVICES+TASK ########################
 apps = [
   {
     task_definition = {
       container = {
-        name             = "nginx" # ITS PATH NAME >>> DOMAIN/PATH   AND CONTAINER NAME 
+        name             = "nginx"   #
         image_tag        = "nginx"
         container_port   = 80
-        healthcheck_path = "http://localhost:80/health" # REQUIRED HEALTH PATH
+        healthcheck_path = "http://localhost:80" # REQUIRED HEALTH PATH
         stream_prefix    = "proxy"
       }
       config = {
@@ -38,5 +37,10 @@ apps = [
     }
     service_name  = "service-nginx"
     replica_count = 2
+    domain_path   = "app1"
   }
 ]
+
+
+
+

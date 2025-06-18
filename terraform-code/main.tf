@@ -1,29 +1,17 @@
 
-# terraform destroy \
-#  -target=module.vpc \
-#  -target=module.iam \
-#  -target=module.sg \
-#  -target=module.lb \
-#  -target=module.ecs \
-#  -target=module.vpcEndpoints
-
-
 module "vpc" {
   source = "./modules/vpc"
 }
 
-# IAM
 module "iam" {
   source = "./modules/iam"
 }
 
-# SG
 module "sg" {
   source = "./modules/sg"
   vpc_id = module.vpc.vpc_id
 }
 
-# LB MODULE
 module "lb" {
   source          = "./modules/lb"
   certificate_arn = var.certificate_arn
@@ -40,7 +28,6 @@ module "route53" {
 }
 
 
-# ECS
 module "ecs" {
   source                 = "./modules/ecs"
   cluster_name           = var.cluster_name
