@@ -33,7 +33,7 @@ To run this project, you’ll need:
 export AWS_ACCESS_KEY_ID="your-access-key"
 export AWS_SECRET_ACCESS_KEY="your-secret-key"
 export AWS_DEFAULT_REGION="us-east-1"
-
+```
 
 ## ARTICLE  #########################################################################################################
 
